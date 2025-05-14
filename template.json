@@ -1,73 +1,379 @@
 {
-  "Actor": {
-    "types": ["character", "npc"],
+  "actor": {
+    "types": [
+      "character",
+      "npc",
+      "critter"
+    ],
     "templates": {
-      "base": {
+      "critter": {
         "health": {
-          "value": 10,
-          "min": 0,
-          "max": 10
+          "value": 1,
+          "min": 1,
+          "rate": 0
         },
-        "power": {
-          "value": 5,
-          "min": 0,
-          "max": 5
+        "xpReward": 0,
+        "ac": 0,
+        "sequence": 0,
+        "ap": 0,
+        "meleeDmg": 0,
+        "critChance": 0,
+        "dr": {
+          "normal": 0,
+          "laser": 0,
+          "fire": 0,
+          "plasma": 0,
+          "electric": 0,
+          "explosive": 0,
+          "emp": 0
         },
-        "biography": ""
-      }
-    },
-    "character": {
-      "templates": ["base"],
-      "attributes": {
-        "level": {
+        "dt": {
+          "normal": 0,
+          "laser": 0,
+          "fire": 0,
+          "plasma": 0,
+          "electric": 0,
+          "explosive": 0,
+          "emp": 0
+        }
+      },
+      "att": {
+        "str": {
+          "min": 1,
+          "max": 10,
+          "value": 1
+        },
+        "per": {
+          "min": 1,
+          "max": 10,
+          "value": 1
+        },
+        "end": {
+          "min": 1,
+          "max": 10,
+          "value": 1
+        },
+        "cha": {
+          "min": 1,
+          "max": 10,
+          "value": 1
+        },
+        "int": {
+          "min": 1,
+          "max": 10,
+          "value": 1
+        },
+        "agi": {
+          "min": 1,
+          "max": 10,
+          "value": 1
+        },
+        "lck": {
+          "min": 1,
+          "max": 10,
           "value": 1
         }
       },
-      "abilities": {
-        "str": {
-          "value": 10
+      "skill": {
+        "smallGuns": {
+          "base": "5 + 4(@att.agi.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
         },
-        "dex": {
-          "value": 10
+        "bigGuns": {
+          "base": "2(@att.agi.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
         },
-        "con": {
-          "value": 10
+        "energyWeapons": {
+          "base": "2(@att.agi.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
         },
-        "int": {
-          "value": 10
+        "unarmed": {
+          "base": "30 + 2(@att.str.value + @att.agi.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
         },
-        "wis": {
-          "value": 10
+        "meleeWeapons": {
+          "base": "20 + 2(@att.str.value + @att.agi.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
         },
-        "cha": {
-          "value": 10
+        "throwing": {
+          "base": "4(@att.agi.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        },
+        "firstAid": {
+          "base": "2(@att.per.value + @att.int.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        },
+        "doctor": {
+          "base": "5 + @att.per.value + @att.int.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        },
+        "sneak": {
+          "base": "5 + 3(@att.agi.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        },
+        "lockpick": {
+          "base": "10 + @att.per.value + @att.agi.value",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        },
+        "steal": {
+          "base": "3(@att.agi.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        },
+        "traps": {
+          "base": "10 + (@att.per.value + @att.agi.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        },
+        "science": {
+          "base": "4(@att.int.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        },
+        "repair": {
+          "base": "3(@att.int.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        },
+        "speech": {
+          "base": "5(@att.cha.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        },
+        "barter": {
+          "base": "4(@att.cha.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        },
+        "gambling": {
+          "base": "5(@att.lck.value)",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        },
+        "outdoorsman": {
+          "base": "",
+          "ranks": 0,
+          "value": "@base + @ranks",
+          "tagged": false
+        }
+      },
+      "derived": {
+        "ap": {
+          "base": "(@att.agi.value / 2) + 5"
+        },
+        "ac": {
+          "base": "@att.agi.value"
+        },
+        "carryWeight": {
+          "base": "25 + (@att.str.value * 25)"
+        },
+        "critChance": {
+          "base": "@att.lck.value"
+        },
+        "dmgRes": {
+          "base": 0
+        },
+        "healRate": {
+          "base": "@att.end.value / 3",
+          "min": 1
+        },
+        "hp": {
+          "base": "15 + (2 * @att.end.value) + @att.str.value"
+        },
+        "meleeDmg": {
+          "base": "@att.str.value - 5",
+          "min": 1
+        },
+        "followers": {
+          "base": "@att.cha.value / 2"
+        },
+        "perkRate": {
+          "base": 3
+        },
+        "poisonRes": {
+          "base": "@att.end.value * 5"
+        },
+        "radResistance": {
+          "base": "@att.end.value * 2"
+        },
+        "sequence": {
+          "base": "@att.per.value * 2"
+        },
+        "skillRate": {
+          "base": "(@att.int.value * 2) + 5"
         }
       }
     },
+    "character": {
+      "templates": [
+        "att",
+        "skills",
+        "derived"
+      ],
+      "xp": 0,
+      "level": 1
+    },
     "npc": {
-      "templates": ["base"],
-      "cr": 0
+      "templates": [
+        "att",
+        "skills",
+        "derived"
+      ],
+      "xpReward": 0
+    },
+    "critter": {
+      "templates": [
+        "critter"
+      ]
     }
   },
-  "Item": {
-    "types": ["item", "feature", "spell"],
+  "item": {
+    "types": [
+      "weapon",
+      "armor",
+      "ammo",
+      "consumable",
+      "perk",
+      "trait",
+      "addiction",
+      "status"
+    ],
     "templates": {
       "base": {
+        "name": "",
         "description": ""
+      },
+      "gear": {
+        "value": 0,
+        "quantity": 1,
+        "weight": 0
+      },
+      "feature": {
+        "effect": ""
       }
     },
-    "item": {
-      "templates": ["base"],
-      "quantity": 1,
+    "weapon": {
+      "templates": [
+        "base",
+        "gear"
+      ],
+      "damage": "",
+      "range": "",
+      "ammo": "",
       "weight": 0,
-      "formula": "d20 + @str.mod + ceil(@lvl / 2)"
+      "modes": [],
+      "ap": 0,
+      "capacity": 0
     },
-    "feature": {
-      "templates": ["base"]
+    "armor": {
+      "templates": [
+        "base",
+        "gear"
+      ],
+      "ac": 0,
+      "dr": {
+        "normal": 0,
+        "laser": 0,
+        "fire": 0,
+        "plasma": 0,
+        "electric": 0,
+        "explosive": 0,
+        "emp": 0
+      },
+      "dt": {
+        "normal": 0,
+        "laser": 0,
+        "fire": 0,
+        "plasma": 0,
+        "electric": 0,
+        "explosive": 0,
+        "emp": 0
+      },
+      "weight": 0
     },
-    "spell": {
-      "templates": ["base"],
-      "spellLevel": 1
+    "ammo": {
+      "templates": [
+        "base",
+        "gear"
+      ],
+      "type": "",
+      "acMod": 0,
+      "drMod": 0,
+      "dmgMod": 0
+    },
+    "consumable": {
+      "templates": [
+        "base",
+        "gear"
+      ],
+      "effect": "",
+      "addictionChance": 0,
+      "addictionDuration": 0,
+      "addictionType": ""
+    },
+    "perk": {
+      "templates": [
+        "base",
+        "feature"
+      ],
+      "lvlReq": 0,
+      "miscReq": "",
+      "ranks": {
+        "max": 0,
+        "value": 0
+      }
+    },
+    "trait": {
+      "templates": [
+        "base",
+        "feature"
+      ],
+      "benifit": "",
+      "penalty": ""
+    },
+    "addiction": {
+      "templates": [
+        "base",
+        "feature"
+      ],
+      "risk": 0,
+      "duration": 0,
+      "type": "",
+      "delay": 0,
+      "effect": ""
+    },
+    "status": {
+      "templates": [
+        "base",
+        "feature"
+      ]
     }
   }
 }
