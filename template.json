@@ -183,53 +183,8 @@
           "value": "@base + @ranks",
           "tagged": false
         }
-      },
-      "derived": {
-        "ap": {
-          "base": "(@att.agi.value / 2) + 5"
-        },
-        "ac": {
-          "base": "@att.agi.value"
-        },
-        "carryWeight": {
-          "base": "25 + (@att.str.value * 25)"
-        },
-        "critChance": {
-          "base": "@att.lck.value"
-        },
-        "dmgRes": {
-          "base": 0
-        },
-        "healRate": {
-          "base": "@att.end.value / 3",
-          "min": 1
-        },
-        "hp": {
-          "base": "15 + (2 * @att.end.value) + @att.str.value"
-        },
-        "meleeDmg": {
-          "base": "@att.str.value - 5",
-          "min": 1
-        },
-        "followers": {
-          "base": "@att.cha.value / 2"
-        },
-        "perkRate": {
-          "base": 3
-        },
-        "poisonRes": {
-          "base": "@att.end.value * 5"
-        },
-        "radResistance": {
-          "base": "@att.end.value * 2"
-        },
-        "sequence": {
-          "base": "@att.per.value * 2"
-        },
-        "skillRate": {
-          "base": "(@att.int.value * 2) + 5"
-        }
       }
+
     },
     "character": {
       "templates": [
